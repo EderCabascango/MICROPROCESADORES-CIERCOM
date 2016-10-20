@@ -1,0 +1,70 @@
+// UNIVERSIDAD TECNICA DEL NORTE
+// CIERCOM 6TO
+// EDER CABASCANGO 
+//Tarea 1 realizar tres juegos de luces con los 14 pines de arduino
+
+int contador=0;
+int leds [14]={0,1,2,3,4,5,6,7,8,9,10,11,12,13}; // vector en direccion desde abajo hacia arriba
+int leds1 [14]={13,12,11,10,9,8,7,6,5,4,3,2,1,0}; // vector en direccion desde arriba hacia abajo
+
+void setup() {
+  // pines digitales
+pinMode(0,OUTPUT); // oin 8 declarado como salida
+pinMode(1,OUTPUT); // oin 8 declarado como salida
+pinMode(2,OUTPUT); // oin 8 declarado como salida
+pinMode(3,OUTPUT); // oin 8 declarado como salida
+pinMode(4,OUTPUT); // oin 8 declarado como salida
+pinMode(5,OUTPUT); // oin 8 declarado como salida
+pinMode(6,OUTPUT); // oin 8 declarado como salida
+pinMode(7,OUTPUT); // oin 8 declarado como salida
+pinMode(8,OUTPUT); // oin 8 declarado como salida
+pinMode(9,OUTPUT); // oin 8 declarado como salida
+pinMode(10,OUTPUT); // oin 8 declarado como salida
+pinMode(11,OUTPUT); // oin 8 declarado como salida
+pinMode(12,OUTPUT); // oin 8 declarado como salida
+pinMode(13,OUTPUT); // oin 8 declarado como salida
+}
+// llamando a los juegos de luces en void loop 
+void loop(){
+  luces1 ();
+  luces2 ();
+  luces3 ();
+  
+}
+void luces1 (){// juego de luces que se prenden desde abajo es decir desde el pin 0 hacia arriba al pin 13
+  for(contador;contador<14;contador++){
+  digitalWrite(leds[contador],HIGH);
+  delay (50);
+  }
+  for(contador;contador>=0;contador--){
+  digitalWrite(leds[contador],LOW);
+  delay (50);
+  }
+  }
+  
+ void luces2 (){// juego de luces se prende desde arriba es decir desde el pin 13 hacia abajo es decir pin 0
+  for(contador;contador<14;contador++){
+  digitalWrite(leds1[contador],HIGH);
+  delay (50);
+  }
+  for(contador;contador>=0;contador--){
+  digitalWrite(leds1[contador],LOW);
+  delay (50);
+  }
+  }
+  
+  void luces3 (){// juego de luces que se prenden las luces desde el centro es decir desde el pin 7 y 6
+  for(contador=7;contador<14;contador++){
+  digitalWrite(leds[contador],HIGH);
+  delay (50);
+  digitalWrite(leds1[contador],HIGH);
+  delay (50);  
+  }
+  for(contador=14;contador>=0;contador--){
+  digitalWrite(leds[contador],LOW);
+  delay (50);
+  digitalWrite(leds1[contador],LOW);
+  delay (50);
+    }  
+}
+  
