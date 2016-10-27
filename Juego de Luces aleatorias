@@ -1,0 +1,94 @@
+/// UNIVERSIDAD TECNICA DEL NORTE
+// FICA - CIERCOM
+// Sistemas Microprocesados
+// Deber 02
+// Cabascango velasquez Eder Wladimir
+// Dos juegos de luces de ciclos aleatorios el primer juego de luces a elección y el segundo que inicie de 
+// los bordes hacia el centro y del centro hacia los bordes
+/////inicializacion de variables pines 
+int led_1=8;
+int led_2=9;
+int led_3=10;
+int led_4=11;
+int led_5=12;
+int led_6=13;
+int sw_1=7;
+int sw_2=6;
+int pulsador=5;
+int vector_leds [6]={led_1,led_2,led_3,led_4,led_5,led_6} ;
+/////////////////////////////////
+//variables de contadores
+int i;
+int j=0;
+/////////////////////////////////
+int ale = 0; // variable aleatoria
+
+void setup() {
+  pinMode(led_1,OUTPUT);//pin 8 como salida
+  pinMode(led_2,OUTPUT);//pin 9 como salida
+  pinMode(led_3,OUTPUT);//pin 10 como salida
+  pinMode(led_4,OUTPUT);//pin 11 como salida
+  pinMode(led_5,OUTPUT);//pin 12 como salida
+  pinMode(led_6,OUTPUT);//pin 13 como salida
+  pinMode(sw_1,INPUT);//pin 6 como entrada
+  pinMode(sw_2,INPUT);//pin 7 como entrada
+  pinMode(pulsador,INPUT);//pin 5 como entrada
+
+}
+
+void loop() {
+    // Primer Juego de luces 
+    // Se enciende de dos en dos apagando el anterior led encendido hacia el borde de arriba
+  if(digitalRead(sw_1)==HIGH && digitalRead(sw_2)==LOW) //condicion si el swicht 1 se encuentra en 1 y si el swicht 2 se encuentra en cero se activa
+    {
+      delay(200); // delay de rebote
+  ale=random (1,5); // condicion aleatoria de 1 hasta 5
+      for(j=0;j<ale;j++)          // ciclo contador aleatorio
+        {//for1
+          for(i=0;i<6;i++)          // ciclo interno que enciende las luces en forma secuencial de dos en dos
+          {//for2
+            digitalWrite(vector_leds[i],HIGH);
+            delay(100);  
+            digitalWrite(vector_leds[i+1],HIGH);
+            delay(100);
+            digitalWrite(vector_leds[i],LOW);
+            delay(100);
+            digitalWrite(vector_leds[i+1],LOW);
+            delay(100);
+          }//for2
+        i=0;
+        }
+        delay (3000); // tiempo estimado de duración de primera variable aleatoria
+    
+    }
+    //Segundo juego de luces se prende desde el borde hacia el centro y del centro hacia el borde
+   
+   else{ 
+         if(digitalRead(sw_1)==LOW&&digitalRead(sw_2)==HIGH){
+              delay(200);
+              ale=random(5); //variable aleatoria 
+              for(j=0;j<ale;j++){//for 1
+                 for (i=0;i<6;i++){//for 2
+                   digitalWrite (led_1,HIGH);digitalWrite (led_6,HIGH);
+                    delay (100);
+                   digitalWrite (led_1,LOW);digitalWrite (led_6,LOW);
+                    delay (100);
+                   digitalWrite (led_2,HIGH);digitalWrite (led_5,HIGH);
+                    delay (100);
+                   digitalWrite (led_2,LOW);digitalWrite (led_5,LOW);
+                    delay (100);
+                   digitalWrite (led_3,HIGH);digitalWrite (led_4,HIGH);
+                    delay (100);
+                   digitalWrite (led_3,LOW);digitalWrite (led_4,LOW);
+                    delay (100);
+                   digitalWrite (led_2,HIGH);digitalWrite (led_5,HIGH);
+                    delay (100);
+                   digitalWrite (led_2,LOW);digitalWrite (led_5,LOW);
+                    delay (100);
+                 }//for 2
+                 i=0;
+          }//for 1
+        delay(3000);
+      }
+  }
+}
