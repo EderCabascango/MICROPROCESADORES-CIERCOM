@@ -1,3 +1,5 @@
+//Realizar un teclado TAB como los antiguos celulares en el cual se pueda observar al presionar varias veces una tecla como esta
+//cambia de letras alfabeticamente y en orden, ademas de que esto sea mostrado en un lcd.
 #include <TimerOne.h>
 //********LCD*******
 #include <LiquidCrystal.h>
