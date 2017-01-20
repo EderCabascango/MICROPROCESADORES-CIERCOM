@@ -1,0 +1,223 @@
+#include <TimerOne.h>
+//********LCD*******
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(13, 12, 11, 10, 9, 8);
+
+//********KEYPAD*******
+#include <Keypad.h>
+const byte ROWS = 4; //four rows
+const byte COLS = 4; //four columns
+//define the cymbols on the buttons of the keypads
+char hexaKeys[ROWS][COLS] = {
+  {'7', '8', '9', '/'},
+  {'4', '5', '6', '*'},
+  {'1', '2', '3', '-'},
+  {'#', '0', '=', '+'}
+};
+byte rowPins[ROWS] = {3, 2, 1, 0}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {7, 6, 5, 4}; //connect to the column pinouts of the keypad
+
+//initialize an instance of class NewKeypad
+Keypad customKeypad = Keypad( makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
+
+//*****************operacines***************
+int i = 0;
+int j = 0;
+int a = 0;
+int b = 0;
+int c = 0;
+int d = 0;
+int e = 0;
+int f = 0;
+int g = 0;
+int h = 0;
+int valid = 0;
+
+
+
+void setup() {
+  Timer1.initialize(100000); //conteo por segundos
+  Timer1.attachInterrupt(timer);
+  lcd.begin(16, 2);
+}
+
+void loop() {
+
+  char customKey = customKeypad.getKey();
+  if (customKey) {
+    valid = 1;
+    if (customKey == '8') {
+      a++;
+      if (a == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('A');
+      }
+      if (a == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('B');
+      }
+      if (a == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('C');
+      }
+      if (a > 3) {
+
+        a = 0;
+      }
+    }
+    if (customKey == '9') {
+      b++;
+      if (b == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('D');
+      }
+      if (b == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('E');
+      }
+      if (b == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('F');
+      }
+      if (b > 3) {
+
+        b = 0;
+      }
+    }
+    if (customKey == '4') {
+      c++;
+      if (c == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('G');
+      }
+      if (c == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('H');
+      }
+      if (c == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('I');
+      }
+      if (c > 3) {
+
+        c = 0;
+      }
+    }
+    if (customKey == '5') {
+      d++;
+      if (d == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('J');
+      }
+      if (d == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('K');
+      }
+      if (d == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('L');
+      }
+      if (d > 3) {
+
+        d = 0;
+      }
+    }
+    if (customKey == '6') {
+      e++;
+      if (e == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('M');
+      }
+      if (e == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('N');
+      }
+      if (e == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('O');
+      }
+      if (e > 3) {
+
+        e = 0;
+      }
+    }
+    if (customKey == '1') {
+      f++;
+      if (f == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('P');
+      }
+      if (f == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('Q');
+      }
+      if (f == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('R');
+      }
+      if (f == 4) {
+        lcd.setCursor(i, 0);
+        lcd.print('S');
+      }
+      if (f > 4) {
+
+        f = 0;
+      }
+    }
+    if (customKey == '2') {
+      g++;
+      if (g == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('T');
+      }
+      if (g == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('U');
+      }
+      if (g == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('V');
+      }
+      if (g > 3) {
+
+        g = 0;
+      }
+    }
+    if (customKey == '3') {
+      h++;
+      if (h == 1) {
+        lcd.setCursor(i, 0);
+        lcd.print('W');
+      }
+      if (h == 2) {
+        lcd.setCursor(i, 0);
+        lcd.print('X');
+      }
+      if (h == 3) {
+        lcd.setCursor(i, 0);
+        lcd.print('Y');
+      }
+      if (h == 4) {
+        lcd.setCursor(i, 0);
+        lcd.print('Z');
+      }
+      if (h > 4) {
+        h = 0;
+      }
+    }
+  }
+
+}
+
+void timer() {
+  if (valid == 1) {
+    j++;
+
+    if (j == 15) {
+
+      i++;
+      j = 0;
+      valid = 0;
+    }
+  }
+}
